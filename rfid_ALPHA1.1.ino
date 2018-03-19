@@ -8,9 +8,9 @@ SoftwareSerial RFID(2, 3); // RX and TX
 Servo myServo0;
 
 
-int tag1[14] = {2, 48, 49, 48, 70, 65, 54, 66, 57, 57, 54, 56, 55, 3};
-int tag2[14] = {2, 48, 49, 48, 70, 52, 51, 68, 56, 50, 48, 66, 53, 3};
-int tag3[14] = {2, 48, 49, 48, 70, 52, 54, 66, 54, 53, 51, 65, 68, 3};
+int tag1[14] = {XXXXXXXXXX};
+int tag2[14] = {XXXXXXXXXX};
+int tag3[14] = {XXXXXXXXXX};
 
 int scan[14];
 int match = -1;
