@@ -7,7 +7,6 @@
 SoftwareSerial RFID(2, 3); // RX and TX
 Servo myServo0;
 
-
 int tag1[14] = {XXXXXXXXXX};
 int tag2[14] = {XXXXXXXXXX};
 int tag3[14] = {XXXXXXXXXX};
@@ -20,7 +19,6 @@ const int buttonPin = 4;
 const int buzzer = 12;
 
 void setup() {
-
   myServo0.attach(9);
   myServo0.write(135);
   pinMode(buttonPin, INPUT);
@@ -29,9 +27,7 @@ void setup() {
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
   digitalWrite(7, HIGH);
-
 }
-
 
 int kort(int check[14]) {
   int pass = 1;
@@ -43,6 +39,7 @@ int kort(int check[14]) {
   return pass;
   RFID.flush();
 }
+
 int state = 0;
 unsigned long timeout;
 void loop() {
@@ -54,19 +51,17 @@ void loop() {
     match = -1;
     digitalWrite(8, LOW);
     digitalWrite(7, HIGH);
-
   }
 
-  if (RFID.available() > 0)
-  {
+  if (RFID.available() > 0) {
     delay(15);
     for (int i = 0; i < 14; i++) {
       scan[i] = RFID.read();
       if (kort(tag1) == 1 || kort(tag2) == 1 || kort(tag3) == 1) {
         timeout = millis() + 1000;
-
         match = 1;
-      } else {
+      } 
+      else {
         match = 0;
         timeout = millis() + 1000;
       }
@@ -94,10 +89,7 @@ void loop() {
         digitalWrite(8, HIGH);
         delay(1000);
         // digitalWrite(8,LOW);
-        
         // SSL added and removed here ;-)
-
-
       }
 
       if (match == 0) {
@@ -112,27 +104,19 @@ void loop() {
         digitalWrite(8, LOW);
         digitalWrite(7, HIGH);
       }
+      
       break;
     case 1:
-      if (millis() > timeout)
-      {
+      if (millis() > timeout) {
         state = 0;
         Serial.println("timeout");
-
       }
+      
       if (match == 1) {
-
         timeout = millis() + 100;
       }
 
-
-
       break;
-
-
   }
-
   match = -1;
 }
-
-
